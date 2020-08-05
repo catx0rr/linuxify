@@ -1,0 +1,10 @@
+#!/bin/bash
+
+mpackages() {
+    
+    apt install -y cmatrix \
+        screenfetch
+
+}
+
+mpackages

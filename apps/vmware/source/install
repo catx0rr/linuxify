@@ -1,0 +1,46 @@
+#!/bin/bash
+
+show_banner() {
+    
+    banner='
+ _    ____  ____       _____    ____  ______       
+| |  / /  |/  / |     / /   |  / __ \/ ____/_______
+| | / / /|_/ /| | /| / / /| | / /_/ / __/ /_  /_  /
+| |/ / /  / / | |/ |/ / ___ |/ _, _/ /___  / /_/ /_
+|___/_/  /_/  |__/|__/_/  |_/_/ |_/_____/ /___/___/
+                    Workstation on Linux v15.5.6-x86_64'
+    echo -e "$banner"
+    echo
+}
+
+check_root() {
+    
+    if [[ $EUID -ne 0 ]]; then
+        echo -e "\nYou must execute the script as root."
+        exit 1
+    fi
+}
+
+
+update() {
+
+    apt update -y
+    apt upgrade -y
+    apt install dkms build-essential -y
+    apt autoremove
+    apt autoclean
+}
+
+get_vmware() {
+    
+    curl -o VMware-Workstation-Full-15.5.6-16341506.x86_64.bundle https://download3.vmware.com/software/wkst/file/VMware-Workstation-Full-15.5.6-16341506.x86_64.bundle
+}
+
+install_vmware() {
+
+    DIR=$(pwd)
+
+    chmod +x $DIR/VMware*
+    $DIR/VMware*
+}
+

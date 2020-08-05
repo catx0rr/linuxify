@@ -1,0 +1,12 @@
+#!/bin/bash
+
+spackages() {
+    
+    apt install -y fail2ban \
+        usbguard \
+        ufw fwbuilder \
+        dcfldd \
+        gnupg
+}
+
+spackages

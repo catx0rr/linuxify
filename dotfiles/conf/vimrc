@@ -1,0 +1,207 @@
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"catx0rr - Default vimrc configuration   "
+
+
+set encoding=utf8
+syntax on
+
+" No sound on the end of the line
+set noerrorbells
+
+" 4 character tab
+set tabstop=4 softtabstop=4
+set shiftwidth=4
+
+" Convert tab into spaces and smart indents
+set expandtab
+set smartindent
+
+" Line number
+set nu
+
+" No text wrapping
+set nowrap
+
+" Case sensitive searching
+set smartcase
+
+" No shits
+set noswapfile
+set nobackup
+set undodir=~/.vim/undodir
+set undofile
+
+" Incremental search
+set incsearch
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Vim plugins
+
+call plug#begin('~/.vim/plugged')
+
+" colorscheme
+"Plug 'morhetz/gruvbox'
+"Plug 'AlessandroYorba/Alduin'
+"Plug 'ParamagicDev/vim-medic_chalk'
+
+" ripgrep (fast grep)
+Plug 'jremmen/vim-ripgrep'
+
+" check git logs / blames / diffs / tags
+Plug 'tpope/vim-fugitive'
+
+" for typescript files
+Plug 'leafgarland/typescript-vim'
+
+" vim manpages
+Plug 'vim-utils/vim-man'
+
+" vim commentary
+Plug 'tpope/vim-commentary'
+
+" C++ plugin
+Plug 'lyuts/vim-rtags'
+
+" Code Auto completion
+Plug 'ycm-core/YouCompleteMe', { 'do': './install.py' }
+
+" Code Auto Pairs
+Plug 'jiangmiao/auto-pairs'
+
+" Undo tree
+Plug 'mbbill/undotree'
+
+" Rust plugin
+Plug 'rust-lang/rust.vim'
+
+" HTML / CSS / SASS Highlighter
+Plug 'https://github.com/gko/vim-coloresque.git'
+
+" Jinja
+Plug 'lepture/vim-jinja'
+
+" Nerdtree file system explorer
+Plug 'preservim/nerdtree'
+
+" Vim Dev icons
+Plug 'ryanoasis/vim-devicons'
+
+" HTML CSS Emmet
+Plug 'mattn/emmet-vim'
+
+" HTML Prettier
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
+
+" Vim multiple cursors
+" Check docu here https://github.com/terryma/vim-multiple-cursors
+Plug 'terryma/vim-multiple-cursors'
+
+" Colorscheme 
+Plug 'dylanaraps/wal.vim'
+
+" Vim Airline
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+call plug#end()
+
+" Other configs
+if executable('rg')
+    let g:rg_derive_root='true'
+endif
+
+let g:netrw_browse_split=2
+let g:netrw_banner=0
+let g:netrw_winsize=25
+
+" Emmet keys
+let g:user_emmet_leader_key=','
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Color schemes
+
+"https://github.com/AlessandroYorba/Alduin
+
+" Alduin
+"let g:alduin_Shout_Dragon_Aspect = 1
+"let g:alduin_Shout_Fire_Breath = 1
+"let g:alduin_Shout_Aura_Whisper = 1
+
+"colorscheme alduin
+
+" pywal
+colorscheme wal
+
+" vim-airline
+let g:airline_powerline_fonts=1
+"let g:airline_theme='minimalist'
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Legend:
+" <silent> - do not show on vim command
+" <leader> - the mapleader key
+" <CR> - end of command, execute
+" <bar> - pipe
+" <SPACE> - enter the command with a trailing space
+
+" Shortcuts Bindings
+
+let mapleader = "b"
+
+nnoremap <silent> <leader>so :source %<CR>
+
+nnoremap <silent> <leader>r :!cat ~/.vim/others/vimrc<CR>
+
+"Yet another shift binding
+nnoremap <silent> <leader>tr :><CR>
+nnoremap <silent> <leader>tl :<<CR>
+
+" Set paste
+nnoremap <silent> <leader>p :set paste<CR>
+nnoremap <silent> <leader>np :set nopaste<CR>
+
+" HTML Prettier
+nnoremap <silent> <leader>pp :Prettier<CR>
+
+" Simple hex editor
+nnoremap <silent> <leader>x :%!xxd<CR>
+nnoremap <silent> <leader>xs :%!xxd -r<CR>
+
+" VIM window
+nnoremap <leader>sh :wincmd v<CR>
+nnoremap <leader>c :wincmd c<CR>
+nnoremap <leader>h :wincmd h<CR>
+nnoremap <leader>j :wincmd j<CR>
+nnoremap <leader>k :wincmd k<CR>
+nnoremap <leader>l :wincmd l<CR>
+
+" You complete me (code preview close)
+nnoremap <leader>pc :pc<CR>
+    " Help window
+nnoremap <silent> <leader>pw :help preview-window<CR>
+    
+" Nerdtree filesystem explorer
+nnoremap <silent> <leader>nt :NERDTree <CR>
+
+"" Project / Coding 
+
+" IDE Emulation
+nnoremap <silent> <leader>i :wincmd v <bar> :Ex <bar> :vertical resize 40<CR>
+
+"Project Search
+nnoremap <silent> <leader>ps :Rg<SPACE>
+
+" YCM Autocompletion
+nnoremap <silent> <Leader>gd :YcmCompleter GoTo<CR>
+nnoremap <silent> <Leader>gf :YcmCompleter FixIt<CR>
+
+" Undotree
+nnoremap <silent> <leader>u :UndotreeShow<CR>
+nnoremap <silent> <leader>v :UndotreeHide<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

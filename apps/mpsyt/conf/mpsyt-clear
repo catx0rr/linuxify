@@ -1,0 +1,33 @@
+#!/bin/bash
+
+clear_cache() {
+    echo -e "Clearing mps-youtube cache..\n"
+
+    read -p "Do you want to clear mpsyt cache?(y/N): " opt
+
+    while true; do
+        case $opt in
+            [Yy]|[Yy][Ee][Ss])
+                
+                rm -f ~/.config/mps-youtube/cache_py_3.[0-9].[0-9]
+                echo -e "\nYou have cleared the cache."
+                exit 0
+                ;;
+
+            [Nn]|[Nn][Oo])
+
+                echo -e "\nExiting.."
+                exit 0
+                ;;
+
+            *)
+                echo
+                clear_cache
+                ;;
+        esac
+    done
+    
+    echo "Done."
+}
+
+clear_cache

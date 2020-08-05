@@ -1,0 +1,15 @@
+#!/bin/bash
+
+system() {
+
+    echo -e "Installing dependencies.."
+    sudo apt install -y imagemagick \
+        feh \
+        nitrogen \
+        hsetroot
+    echo -e "Installing pywal.."
+    sudo pip3 install pywal
+}    
+
+
+system

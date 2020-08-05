@@ -1,0 +1,70 @@
+#!/bin/bash
+
+dir=$(dirname $0)
+fontdir=$dir
+mactheme=$dir/../../custom-packs/mac-os-catalina
+targetdir=$HOME
+
+
+
+user() {
+
+    # Initiate directories
+    mkdir -p $targetdir/.fonts
+    mkdir -p $targetdir/.themes
+    mkdir -p $targetdir/.icons
+ 
+    # Fonts
+    echo -e "Downloading fonts.."
+    curl -fSo Monaco.tar.xz https://drive.google.com/u/0/uc?id=1WqZKeRUZDwY3XrMcAioUyShIKIoLnEQy&export=download
+    curl -fSo Monego.tar.xz https://drive.google.com/u/0/uc?id=1quJ-6N_tjqY5tspxCKm1DDWj_h2aIip4&export=download
+    echo -e "Installing fonts.."
+    echo -e "Copied items to $targetdir/.fonts"
+    for file in $fontdir/macos/*.tar.xz; do tar -xf $file; done
+    cp -rf Monaco/monaco* $targetdir/.fonts
+    echo -e "Copied items to $targetdir/.fonts"
+    cp -rf Monego/Monego* $targetdir/.fonts
+    rm -rf Monego Monaco Monego.tar.xz Monaco.tar.xz
+
+    fc-cache -f
+    rm -rf $targetdir/.fonts/../../.fontconfig 2>/dev/null
+    echo
+
+    # Themes
+    echo -e "Installing themes.."
+    for file in $mactheme/gtk/*.tar.xz; do tar -xf $file; done
+    cp -rf catalina-gtk-* $targetdir/.themes
+    rm -rf catalina-gtk-*
+    echo -e "Copied items to $targetdir/.themes"
+    echo
+
+    # Gnome-Shell
+    echo -e "Installing gnome shell theme.."
+    for file in $mactheme/gnome-shell/*.tar.xz; do tar -xf $file; done
+    cp -rf catalina-shell-* $targetdir/.themes
+    rm -rf catalina-shell-*
+    echo -e "Copied items to $targetdir/.themes"
+    echo
+
+    # Icons
+    echo -e "Installing icons.."
+    for file in $mactheme/icons/*.tar.xz; do tar -xf $file; done
+    cp -rf catalina-icons $targetdir/.icons
+    rm -rf catalina-icons
+    echo -e "Copied to $targetdir/.icons"
+    echo
+
+    # Cursors
+    echo -e "Installing cursors.."
+    for file in $mactheme/cursors/*.tar.xz; do tar -xf $file; done
+    cp -rf catalina-cursors-* $targetdir/.icons
+    rm -rf catalina-cursors-*
+    echo -e "Copied items to $targetdir/.icons"
+    echo
+
+    sleep 3
+
+    echo -e "Successfully installed MacOS Catalina theme."
+}
+
+user

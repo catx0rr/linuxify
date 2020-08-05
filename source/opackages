@@ -1,0 +1,10 @@
+#!/bin/bash
+
+opackages() {
+    
+    apt install -y cmatrix \
+        screenfetch
+
+}
+
+opackages

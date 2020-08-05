@@ -1,0 +1,10 @@
+#!/bin/bash
+
+echo -e "Turning off sleep mode on your machine..\n"
+sudo systemctl mask sleep.target \
+    suspend.target \
+    hibernate.target \
+    hybrid-sleep.target
+
+echo -e "\nSleep mode is now disabled."
+

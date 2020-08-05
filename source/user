@@ -1,0 +1,48 @@
+#!/bin/bash
+
+selection='Themes available:
+1. MacOS Catalina theme
+5. Other Fonts
+0. Install terminal theming (pywal)'
+
+user() {
+    dir=$(dirname $0)
+    
+    echo
+    echo -e "$selection"
+    echo
+    read -p "Choose what themes to install on your system [1-0]: " prompt
+
+    while true; do
+        case $prompt in
+            1)
+                # Install MacOS Catalina theme
+                echo -e "\nYou have chosen: "$prompt
+                echo
+                $dir/macos/uinstall
+                break
+                ;;
+            5)
+                # Install other fonts
+                echo -e "\nYou have chosen: "$prompt
+                echo
+                $dir/font/fuinstall
+                echo -e "\nFonts are now installed!"
+                exit 0               
+                ;;
+            0)
+                # Install terminal theming (pywal)
+                echo -e "\nYou have chosen: "$prompt
+                echo
+                $dir/pywal/uinstall
+                break
+                ;;
+            *)
+                echo
+                user
+                ;;
+        esac
+    done
+}
+
+user

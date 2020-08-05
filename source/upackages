@@ -1,0 +1,22 @@
+#!/bin/bash
+
+upackages() {
+    
+    apt install -y net-tools \
+        pciutils \
+        pcmciautils \
+        lshw \
+        wget \
+        curl \
+        rdesktop \
+        ranger \
+        apache2 \
+        speedtest-cli \
+        tmux \
+        vim \
+        flameshot \
+        keepassxc
+    
+}
+
+upackages

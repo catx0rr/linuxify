@@ -1,0 +1,41 @@
+#!/bin/bash
+
+dir=$(dirname $0)
+fontdir=$dir
+targetdir=$HOME
+
+
+
+user() {
+    
+    # Initiate directories
+    mkdir -p $targetdir/.fonts
+    
+    # Fonts
+    echo -e "Downloading fonts.."
+    curl -fSo FiraCode.tar.xz https://drive.google.com/u/0/uc?id=1L7SRAZ9yJ1EkVN8PnG2tZhpxQwo1GLev&export=download
+    curl -fSo Font-Awesome.tar.xz https://drive.google.com/u/0/uc?id=10MtxGHflhVqJ6bExgFn3zDZXrhfOOqrb&export=download
+    curl -fSo HackFont.tar.xz https://drive.google.com/u/0/uc?id=1Bs4G5p7GsrPqVCLdedFU7tpnSWDfbb4v&export=download
+    curl -fSo Source-Code-Pro.tar.xz https://drive.google.com/u/0/uc?id=1W_49y-4ecLWeRFO3A4Gusi7ztnoho4Id&export=download
+    echo -e "Installing fonts.."
+    echo -e "Copied items to $targetdir/.fonts"
+    for file in $fontdir/*.tar.xz; do tar -xf $file; done
+    cp -rf FiraCode/opentype/FiraCode $targetdir/.fonts
+    echo -e "Copied items to $targetdir/.fonts"
+    cp -rf HackFont $targetdir/.fonts
+    echo -e "Copied items to $targetdir/.fonts"
+    cp -rf Font-Awesome $targetdir/.fonts
+    echo -e "Copied items to $targetdir/.fonts"
+    cp -rf Source-Code-Pro $targetdir/.fonts
+    echo -e "Cloning nerdfonts.."
+    git clone https://github.com/ryanoasis/nerd-fonts
+    echo -e "Installing nerdfonts.."
+    bash nerd-fonts/install.sh
+    rm -rf {FiraCode,HackFont,Font-Awesome,Source-Code-Pro,nerd-fonts}
+    rm -rf {FiraCode.tar.xz,HackFont.tar.xz,Font-Awesome.tar.xz,Source-Code-Pro.tar.xz}
+    fc-cache -f
+    rm -rf $targetdir/.fonts/../../.fontconfig 2>/dev/null
+    echo
+}
+
+user

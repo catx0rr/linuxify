@@ -1,0 +1,8 @@
+#!/bin/bash
+
+cpackages() {
+    
+    apt install -y plank #\
+}
+
+cpackages
